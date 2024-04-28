@@ -1,5 +1,4 @@
 export default function AdvancedCard({ img, title, description, classPosition }) {
-  console.log(classPosition);
   return (
     <div className={`advanced--card ${classPosition}`}>
       <div className="advanced--card-image">

@@ -47,6 +47,12 @@
   font-weight: 700;
 }
 
+.navbar--mobile {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
 .navbar--nav {
   display: flex;
   align-items: center;
@@ -145,7 +151,7 @@
   gap: 30px;
   margin-block: 50px;
   width: 100%;
-  height: 400px;
+  height: 500px;
 }
 
 .advanced--cards::before {
@@ -231,7 +237,7 @@
 .shorten--input {
   width: 100%;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 20px;
   font-size: 1.375rem;
   font-weight: 700;
@@ -240,6 +246,7 @@
 
 .shorten--input::placeholder {
   color: var(--neutral-grayish-violet);
+  font-family: "Poppins", sans-serif;
 }
 
 .shorten--buttom {
@@ -248,7 +255,7 @@
   justify-content: center;
   background-color: var(--primary-cyan);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   color: var(--primary-white);
   border: none;
   width: 220px;
@@ -314,6 +321,7 @@
   font-size: 2.5rem;
   letter-spacing: -1px;
   color: var(--primary-white);
+  text-align: center;
 }
 
 .footer {
@@ -357,4 +365,229 @@
   display: flex;
   gap: 15px;
   font-size: 1.8rem;
+}
+
+@media only screen and (max-width: 1128px) {
+  .footer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer--logo {
+    margin-right: 0px;
+  }
+}
+
+@media only screen and (max-width: 975px) {
+  .navbar {
+    padding: 40px 30px;
+    position: relative;
+    justify-content: space-between;
+  }
+
+  .navbar--menu-icon {
+    font-size: 2rem;
+    color: var(--neutral-very-dark-violet);
+  }
+
+  .navbar--mobile {
+    flex-direction: column;
+    position: absolute;
+    background-color: var(--primary-violet);
+    top: 100px;
+    border-radius: 10px;
+    padding: 40px 30px;
+    font-size: 1.2rem;
+    width: 85%;
+  }
+
+  .navbar--nav {
+    flex-direction: column;
+    border-bottom: 0.1em solid rgba(266, 266, 266, 0.3);
+    padding-bottom: 30px;
+  }
+  
+  .navbar--login {
+    margin-top: 30px;
+    gap: 30px;
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .navbar--nav a, 
+  .navbar--login a:first-of-type {
+    color: var(--primary-white);
+  }
+
+  .button-rounded-full {
+    width: 100%;
+  }
+
+  .hero {
+    flex-direction: column-reverse;
+    align-items: end;
+    margin-top: -50px;
+  }
+  
+  .hero--image {
+    background-size: 140%;
+    background-position: left center;
+    width: 95vw;
+    height: 420px;
+  }
+  
+  .hero--section {
+    align-items: center;
+    text-align: center;
+    padding-inline: 30px;
+  }
+  
+  .hero--title {
+    font-size: 2.8rem;
+    line-height: 3.5rem;
+  }
+  
+  .hero--description {
+    margin-top: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .hero--button {
+    width: 190px;
+    font-size: 1.2rem;
+    margin-top: 40px;
+    font-weight: 700;
+    padding-block: 15px;
+  }
+
+  .advanced {
+    padding-inline: 30px;
+    padding-bottom: 40px;
+  }
+  
+  .advanced--title {
+    font-size: 1.9rem;
+    line-height: 3rem;
+    margin-top: 100px;
+  }
+  
+  .advanced--description {
+    font-size: 18px;
+    max-width: 100%;
+    margin-top: 20px;
+  }
+  
+  .advanced--cards {
+    flex-direction: column;
+    gap: 50px;
+    margin-block: 60px;
+    height: 100%; 
+  }
+  
+  .advanced--cards::before {
+    width: 10px;
+    height: 80%;
+  }
+  
+  .advanced--card {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .advanced--card-image {
+    margin-left: 125px;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .advanced--card-content {
+    margin-top: 40px;
+    padding: 100px 30px 50px 30px;
+    text-align: center;
+  }
+  
+  .advanced--card-title {
+    font-size: 1.5rem;
+  }
+  
+  .advanced--card-desc {
+    margin-top: 20px;
+    font-size: 1.05rem;
+  }
+
+  .shorten {
+    background-image: url("./assets/images/bg-shorten-mobile.svg");
+    background-size: 75%;
+    background-position: right top;
+    background-repeat: no-repeat;
+    margin: 0 30px;
+    padding: 30px;
+    border-radius: 10px;
+  }
+  
+  .shorten--form {
+    flex-direction: column;
+  }
+  
+  .shorten--input {
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .shorten--input::placeholder {
+    font-size: 1.1rem;
+  }
+
+  
+  .shorten--buttom {
+    padding: 15px;
+    width: 100%;
+    font-size: 1.3rem;
+  }
+  
+  .shorten-link {
+    gap: 30px;
+    margin-top: 130px;
+  }
+  
+  .shorten-link--box {
+    font-size: 1.2rem;
+    flex-direction: column;
+    align-items: start;
+    padding: 0;
+    border-radius: 5px;
+  }
+  
+  .shorten-link--real {
+    border-bottom: 1px solid var(--neutral-gray);
+    padding: 10px 15px;
+  }
+  
+  .shorten-link--shorted {
+    text-align: left;
+    padding: 0 15px;
+  }
+  
+  .shorten-link--box-buttom {
+    width: 100%;
+    padding: 0 15px 15px 15px;
+  }
+
+  .shorten-link--button {
+    padding: 10px;
+    font-size: 1.1rem;
+  }
+
+  .boost {
+    padding: 120px 40px;
+    background-image: url("./assets/images/bg-boost-mobile.svg");
+  }
+  
+  .boost--title {
+    font-size: 1.8rem;
+    line-height: 0;
+  }
 }
