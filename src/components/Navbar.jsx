@@ -1,11 +1,22 @@
+import { useState } from "react";
 import logo from "../assets/images/logo.svg";
-import { AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 export default function Navbar() {
+  const [menu, setMenu] = useState(false)
+
+  function handleClick() {
+    setMenu(!menu)
+  }
+
+  const openMenu = {
+    display: menu ? 'flex' : 'none'
+  }
+
   return (
     <nav className="navbar">
       <img src={logo} alt="Shortly Logo" />
-      <div className="navbar--mobile">
+      <div className="navbar--mobile" style={openMenu}>
         <ul className="navbar--nav">
           <li>
             <a href="#">Features</a>
@@ -25,7 +36,9 @@ export default function Navbar() {
           </a>
         </div>
       </div>
-      <AiOutlineMenu className="navbar--menu-icon" />
+      <button className="navbar--menu-icon" onClick={handleClick}>
+        {menu ? <AiOutlineClose /> : <AiOutlineMenu />}
+      </button>
     </nav>
   );
 }

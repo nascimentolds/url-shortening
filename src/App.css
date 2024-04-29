@@ -80,6 +80,10 @@
   text-align: right;
 }
 
+.navbar--menu-icon {
+  display: none;
+}
+
 .hero {
   display: flex;
   align-items: center;
@@ -388,11 +392,19 @@
   }
 
   .navbar--menu-icon {
+    display: inline-block;
     font-size: 2rem;
     color: var(--neutral-very-dark-violet);
+    border: none;
+    background-color: transparent;
+  }
+
+  .navbar--menu-icon:hover {
+    color: var(--neutral-grayish-violet);
   }
 
   .navbar--mobile {
+    /* display: none; */
     flex-direction: column;
     position: absolute;
     background-color: var(--primary-violet);
