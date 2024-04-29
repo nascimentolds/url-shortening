@@ -10,55 +10,24 @@ export default function Shorten() {
   function handleInputValue(event) {
     const value = event.target.value;
     setInputValue(value);
+    setInputError(false); // Reseta o estado de erro quando o usuário digita algo
   }
 
-  function sendingLink() {
+  async function sendingLink() {
     if (inputValue === "") {
       setInputError(true);
     } else {
-      console.log("Gerar url");
-      handleShorten()
-      setInputError(false);
-      setInputValue("");
+      try {
+        const response = await axios.post(
+          'https://cleanuri.com/api/v1/shorten',
+          { url: inputValue }
+        );
+        setShortUrl(response.data.result_url);
+      } catch (error) {
+        setError("Error, try again!");
+      }
     }
   }
-
-  const handleShorten = async () => {
-    try {
-      const response = await axios.post('https://cleanuri.com/api/v1/shorten', {
-        url: inputValue
-      })
-      setShortUrl(response.data.result_url)
-    } catch (error) {
-      setError("Error, try again!")
-    }
-  }
-
-  error ? console.log(error) : console.log(shortUrl)
-
-  // const handleShorten = async () => {
-  //   try {
-  //     const response = await fetch('https://cleanuri.com/api/v1/shorten', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify({ url: inputValue })
-  //     })
-
-  //     if(!response.ok) {
-  //       throw new Error("Error, try again!")
-  //     }
-
-  //     const data = await response.json()
-  //     setShortUrl(data.result_url)
-
-  //   } catch (error) {
-  //     setError(error.message);
-  //   }
-  // }
-
-  // console.log(shortUrl)
 
   return (
     <form className="shorten">
@@ -86,6 +55,19 @@ export default function Shorten() {
             Shorten It!
           </button>
         </div>
+        {shortUrl && (
+          <div className="shorten--result">
+            <p>Shortened URL:</p>
+            <a href={shortUrl} target="_blank" rel="noopener noreferrer">
+              {shortUrl}
+            </a>
+          </div>
+        )}
+        {error && (
+          <div className="shorten--error">
+            <p>{error}</p>
+          </div>
+        )}
       </div>
     </form>
   );
