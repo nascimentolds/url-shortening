@@ -19,7 +19,7 @@ export default function Shorten() {
     } else {
       try {
         const response = await axios.post(
-          'https://cleanuri.com/api/v1/shorten',
+          'https://url-short-api-seven.vercel.app/shorten',
           { url: inputValue }
         );
         setShortUrl(response.data.result_url);
@@ -28,6 +28,8 @@ export default function Shorten() {
       }
     }
   }
+
+  console.log(error ? error : shortUrl)
 
   return (
     <form className="shorten">
@@ -55,19 +57,6 @@ export default function Shorten() {
             Shorten It!
           </button>
         </div>
-        {shortUrl && (
-          <div className="shorten--result">
-            <p>Shortened URL:</p>
-            <a href={shortUrl} target="_blank" rel="noopener noreferrer">
-              {shortUrl}
-            </a>
-          </div>
-        )}
-        {error && (
-          <div className="shorten--error">
-            <p>{error}</p>
-          </div>
-        )}
       </div>
     </form>
   );
