@@ -1,16 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Shorten() {
   const [inputValue, setInputValue] = useState("");
   const [inputError, setInputError] = useState(false);
-  const [shortUrl, setShortUrl] = useState("");
+  const [shortUrl] = useState("");
   const [error, setError] = useState("");
+  const [urlPairs, setUrlPairs] = useState([]);
+
+  useEffect(() => {
+    localStorage.setItem("urlPairs", JSON.stringify(urlPairs));
+  }, [urlPairs])
 
   function handleInputValue(event) {
     const value = event.target.value;
     setInputValue(value);
-    setInputError(false); // Reseta o estado de erro quando o usuário digita algo
+    setInputError(false);
   }
 
   async function sendingLink() {
@@ -22,7 +27,11 @@ export default function Shorten() {
           'https://url-short-api-seven.vercel.app/shorten',
           { url: inputValue }
         );
-        setShortUrl(response.data.result_url);
+        // setShortUrl(response.data.result_url);
+        const newPair = {longUrl: inputValue, shortUrl: response.data.result_url}
+        setUrlPairs([...urlPairs, newPair])
+        setInputValue("")
+        
       } catch (error) {
         setError("Error, try again!");
       }

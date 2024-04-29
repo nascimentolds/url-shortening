@@ -1,4 +1,17 @@
+import { useEffect, useState } from "react";
+
 export default function ShortenLink() {
+  const [urls, setUrls] = useState([])
+
+  useEffect(() => {
+    const storedUrls = localStorage.getItem("urlPairs");
+    if(storedUrls) {
+      setUrls(JSON.parse(storedUrls));
+    }
+  }, [])
+
+  console.log(urls)
+
   return (
     <div className="shorten-link">
       <div className="shorten-link--box">
