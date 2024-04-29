@@ -12,6 +12,15 @@ export default function Shorten() {
     localStorage.setItem("urlPairs", JSON.stringify(urlPairs));
   }, [urlPairs])
 
+  useEffect(() => {
+    const storedUrls = localStorage.getItem("urlPairs");
+    if(storedUrls) {
+      setUrlPairs(JSON.parse(storedUrls));
+    }
+  }, [])
+
+  console.log(urlPairs)
+
   function handleInputValue(event) {
     const value = event.target.value;
     setInputValue(value);
