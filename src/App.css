@@ -319,7 +319,7 @@
 
 .boost--title {
   font-size: 2.5rem;
-  letter-spacing: -1px;
+  /* letter-spacing: -1px; */
   color: var(--primary-white);
   text-align: center;
 }
@@ -421,6 +421,11 @@
     color: var(--primary-white);
   }
 
+  .navbar--nav a:hover, 
+  .navbar--login a:first-of-type:hover {
+    color: var(--primary-cyan);
+  }
+
   .button-rounded-full {
     width: 100%;
   }
@@ -497,7 +502,8 @@
   }
   
   .advanced--card-image {
-    margin-left: 125px;
+    margin-left: 50%;
+    transform: translate(-80%);
     width: 100px;
     height: 100px;
   }
@@ -588,6 +594,6 @@
   
   .boost--title {
     font-size: 1.8rem;
-    line-height: 0;
+    /* line-height: 0; */
   }
 }
