@@ -1,22 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "../assets/images/logo.svg";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 export default function Navbar() {
   const [menu, setMenu] = useState(false)
+  const [windowWidth, setWindowWidth] = useState(0)  
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+    }
 
+    window.addEventListener('resize', handleResize)
+    setWindowWidth(window.innerWidth)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+  
   function handleClick() {
     setMenu(!menu)
   }
 
-  const openMenu = {
-    display: menu ? 'flex' : 'none'
+  const toggleMenu = {
+    display: menu || windowWidth >= 976 ? 'flex' : 'none'
   }
 
   return (
     <nav className="navbar">
       <img src={logo} alt="Shortly Logo" />
-      <div className="navbar--mobile" style={openMenu}>
+      <div className="navbar--mobile" style={toggleMenu}>
         <ul className="navbar--nav">
           <li>
             <a href="#">Features</a>
