@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 export default function Shorten() {
   const [inputValue, setInputValue] = useState("");
@@ -24,27 +25,40 @@ export default function Shorten() {
 
   const handleShorten = async () => {
     try {
-      const response = await fetch('https://cleanuri.com/api/v1/shorten', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ url: inputValue })
+      const response = await axios.post('https://cleanuri.com/api/v1/shorten', {
+        url: inputValue
       })
-
-      if(!response.ok) {
-        throw new Error("Error, try again!")
-      }
-
-      const data = await response.json()
-      setShortUrl(data.result_url)
-
+      setShortUrl(response.data.result_url)
     } catch (error) {
-      setError(error.message);
+      setError("Error, try again!")
     }
   }
 
-  console.log(shortUrl)
+  error ? console.log(error) : console.log(shortUrl)
+
+  // const handleShorten = async () => {
+  //   try {
+  //     const response = await fetch('https://cleanuri.com/api/v1/shorten', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({ url: inputValue })
+  //     })
+
+  //     if(!response.ok) {
+  //       throw new Error("Error, try again!")
+  //     }
+
+  //     const data = await response.json()
+  //     setShortUrl(data.result_url)
+
+  //   } catch (error) {
+  //     setError(error.message);
+  //   }
+  // }
+
+  // console.log(shortUrl)
 
   return (
     <form className="shorten">
