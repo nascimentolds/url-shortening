@@ -1,5 +1,3 @@
-// import heroImage from "../assets/images/illustration-working.svg"
-
 export default function Hero() {
   return (
     <div className="hero">

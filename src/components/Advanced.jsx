@@ -4,11 +4,11 @@ import iconRecognition from "../assets/images/icon-brand-recognition.svg"
 import iconDetailed from "../assets/images/icon-detailed-records.svg"
 import iconFully from "../assets/images/icon-fully-customizable.svg"
 
-export default function Advanced() {
+export default function Advanced({ data }) {
   return (
     <div>
       <section className="advanced">
-        <ShortenLink />
+        <ShortenLink data={data} />
         <h1 className="advanced--title">Advanced Statistics</h1>
         <p className="advanced--description">
           Track how your links are performing across the web with our advanced

@@ -286,6 +286,10 @@
   background-color: var(--primary-light-cyan);
 }
 
+.shorten--copied, .shorten--copied:hover {
+  background-color: var(--primary-violet);
+}
+
 .shorten-link {
   display: flex;
   flex-direction: column;
@@ -309,12 +313,18 @@
 .shorten-link--real {
   width: 100%;
   color: var(--neutral-very-dark-violet);
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
 
 .shorten-link--shorted {
   width: 100%;
   color: var(--primary-cyan);
   text-align: right;
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
 
 .shorten-link--button {
@@ -343,7 +353,6 @@
 
 .boost--title {
   font-size: 2.5rem;
-  /* letter-spacing: -1px; */
   color: var(--primary-white);
   text-align: center;
 }
@@ -424,12 +433,10 @@
   }
 
   .navbar--mobile {
-    /* display: none; */
     flex-direction: column;
     position: absolute;
     background-color: var(--primary-violet);
     top: 100px;
-    /* right: 30px; */
     border-radius: 10px;
     padding: 40px 30px;
     font-size: 1.2rem;
@@ -627,6 +634,5 @@
   
   .boost--title {
     font-size: 1.8rem;
-    /* line-height: 0; */
   }
 }

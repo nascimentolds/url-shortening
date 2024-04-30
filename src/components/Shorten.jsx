@@ -1,25 +1,8 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 
-export default function Shorten() {
+export default function Shorten({ inputUrl }) {
   const [inputValue, setInputValue] = useState("");
   const [inputError, setInputError] = useState(false);
-  const [shortUrl] = useState("");
-  const [error, setError] = useState("");
-  const [urlPairs, setUrlPairs] = useState([]);
-
-  useEffect(() => {
-    localStorage.setItem("urlPairs", JSON.stringify(urlPairs));
-  }, [urlPairs])
-
-  useEffect(() => {
-    const storedUrls = localStorage.getItem("urlPairs");
-    if(storedUrls) {
-      setUrlPairs(JSON.parse(storedUrls));
-    }
-  }, [])
-
-  console.log(urlPairs)
 
   function handleInputValue(event) {
     const value = event.target.value;
@@ -31,23 +14,9 @@ export default function Shorten() {
     if (inputValue === "") {
       setInputError(true);
     } else {
-      try {
-        const response = await axios.post(
-          'https://url-short-api-seven.vercel.app/shorten',
-          { url: inputValue }
-        );
-        // setShortUrl(response.data.result_url);
-        const newPair = {longUrl: inputValue, shortUrl: response.data.result_url}
-        setUrlPairs([...urlPairs, newPair])
-        setInputValue("")
-        
-      } catch (error) {
-        setError("Error, try again!");
-      }
+      inputUrl(inputValue);
     }
   }
-
-  console.log(error ? error : shortUrl)
 
   return (
     <form className="shorten">

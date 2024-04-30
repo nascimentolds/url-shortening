@@ -1,30 +1,43 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export default function ShortenLink() {
-  const [urls, setUrls] = useState([])
+export default function ShortenLink({ data }) {
+  const [copied, setCopied] = useState({});
 
-  useEffect(() => {
-    const storedUrls = localStorage.getItem("urlPairs");
-    if(storedUrls) {
-      setUrls(JSON.parse(storedUrls));
-    }
-  }, [])
+  const copiedUrl = (url) => {
+    navigator.clipboard
+      .writeText(url)
+      .then(() => {
+        // console.log("Url copied to the clipboard!");
+      })
+      .catch((err) => {
+        console.log("Error while copying to the clipboard:", err);
+      });
+  };
 
-  console.log(urls)
+  const handleCopiar = (id, texto) => {
+    copiedUrl(texto);
+    setCopied({ ...copied, [id]: true });
+  };
 
   return (
     <div className="shorten-link">
-      <div className="shorten-link--box">
-        <div className="shorten-link--real">https://frontendmentor.io</div>
-        <div className="shorten-link--shorted">https://rel.ink/k4IKyk</div>
-        <div className="shorten-link--box-buttom"><button className="shorten-link--button shorten--buttom">Copy</button></div>
-      </div>
-
-      <div className="shorten-link--box">
-        <div className="shorten-link--real">https://frontendmentor.io</div>
-        <div className="shorten-link--shorted">https://rel.ink/k4IKyk</div>
-        <div className="shorten-link--box-buttom"><button className="shorten-link--button shorten--buttom">Copy</button></div>
-      </div>
+      {data.map((item, index) => {
+        return (
+          <div className="shorten-link--box" key={index}>
+            <div className="shorten-link--real">{item.longUrl}</div>
+            <div className="shorten-link--shorted">{item.shortUrl}</div>
+            <div className="shorten-link--box-buttom">
+              <button
+                onClick={() => handleCopiar(index, item.shortUrl) }
+                disabled={copied[index]}
+                className={`shorten-link--button shorten--buttom ${copied[index] ? "shorten--copied" : ""}`}
+              >
+                {copied[index] ? 'Copied!' : 'Copy'}              
+              </button>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
